@@ -6,19 +6,19 @@
 }
 
 :root {
-  --bg: #F8FAFC;
-  --primary: #1E3A8A;
-  --accent: #0EA5A4;
-  --text: #1F2937;
+  --bg: #FDF6F0;
+  --primary: #4C3BCF;
+  --accent: #FF6B6B;
+  --text: #2D2A32;
   --card-bg: #FFFFFF;
-  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow: 0 4px 20px rgba(76,59,207,0.10);
 }
 
 body.dark-mode {
-  --bg: #0F172A;
-  --text: #E5E7EB;
-  --card-bg: #1E293B;
-  --shadow: 0 4px 20px rgba(0,0,0,0.4);
+  --bg: #191325;
+  --text: #F1EDE8;
+  --card-bg: #251E38;
+  --shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
 body {
