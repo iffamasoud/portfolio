@@ -138,6 +138,8 @@ section {
   gap: 40px;
   min-height: 85vh;
   flex-wrap: wrap;
+  background: linear-gradient(135deg, rgba(76,59,207,0.06), rgba(255,107,107,0.08));
+  border-radius: 0 0 40px 40px;
 }
 
 .hero-left {
@@ -174,6 +176,7 @@ section {
   display: flex;
   justify-content: center;
   min-width: 280px;
+  position: relative;
 }
 
 .profile-card {
@@ -183,12 +186,46 @@ section {
   overflow: hidden;
   box-shadow: var(--shadow);
   border: 6px solid var(--card-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .profile-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* ===== HERO BLOB SHAPES ===== */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.55;
+  z-index: 0;
+  animation: float 6s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 220px;
+  height: 220px;
+  background: var(--accent);
+  top: -30px;
+  left: 10px;
+}
+
+.blob-2 {
+  width: 180px;
+  height: 180px;
+  background: var(--primary);
+  bottom: -20px;
+  right: 20px;
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
 }
 
 /* ===== ABOUT ===== */
