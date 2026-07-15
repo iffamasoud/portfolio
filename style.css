@@ -6,18 +6,18 @@
 }
 
 :root {
-  --bg: #FDF6F0;
-  --primary: #4C3BCF;
-  --accent: #FF6B6B;
-  --text: #2D2A32;
+  --bg: #F7F5EF;
+  --primary: #234D35;
+  --accent: #C9A24B;
+  --text: #24291F;
   --card-bg: #FFFFFF;
-  --shadow: 0 4px 20px rgba(76,59,207,0.10);
+  --shadow: 0 4px 20px rgba(35,77,53,0.12);
 }
 
 body.dark-mode {
-  --bg: #191325;
-  --text: #F1EDE8;
-  --card-bg: #251E38;
+  --bg: #10160F;
+  --text: #EDEAE0;
+  --card-bg: #1C2419;
   --shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
@@ -138,7 +138,7 @@ section {
   gap: 40px;
   min-height: 85vh;
   flex-wrap: wrap;
-  background: linear-gradient(135deg, rgba(76,59,207,0.06), rgba(255,107,107,0.08));
+  background: linear-gradient(135deg, rgba(35,77,53,0.07), rgba(201,162,75,0.10));
   border-radius: 0 0 40px 40px;
 }
 
@@ -304,7 +304,7 @@ section {
 
 .tech-tag {
   display: inline-block;
-  background-color: rgba(14,165,164,0.15);
+  background-color: rgba(201,162,75,0.15);
   color: var(--accent);
   padding: 4px 10px;
   border-radius: 6px;
