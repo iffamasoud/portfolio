@@ -1,144 +1,166 @@
-/* ==========================================
-   PORTFOLIO V2
-   IFFA MASOUD
-========================================== */
+/*==================================================
+  IFFA MASOUD PORTFOLIO
+  Modern JavaScript
+==================================================*/
 
-/* =========================
-   THEME TOGGLE
-========================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-const themeBtn = document.getElementById("themeToggle");
+    /*=========================================
+      THEME TOGGLE
+    =========================================*/
 
-if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-    themeBtn.textContent = "☀️";
-}
+    const themeToggle = document.getElementById("themeToggle");
 
-themeBtn.addEventListener("click", () => {
+    const savedTheme = localStorage.getItem("theme");
 
-    document.body.classList.toggle("dark");
+    if (savedTheme === "light") {
 
-    if (document.body.classList.contains("dark")) {
+        document.body.classList.add("light-mode");
 
-        localStorage.setItem("theme", "dark");
-        themeBtn.textContent = "☀️";
+        if (themeToggle) themeToggle.textContent = "🌙";
 
     } else {
 
-        localStorage.setItem("theme", "light");
-        themeBtn.textContent = "🌙";
+        document.body.classList.remove("light-mode");
+
+        if (themeToggle) themeToggle.textContent = "☀️";
 
     }
 
-});
+    if (themeToggle) {
 
+        themeToggle.addEventListener("click", () => {
 
-/* =========================
-   MOBILE MENU
-========================= */
+            document.body.classList.toggle("light-mode");
 
-const menuBtn = document.getElementById("menuBtn");
+            const isLight =
+                document.body.classList.contains("light-mode");
 
-const navLinks = document.getElementById("navLinks");
+            localStorage.setItem(
+                "theme",
+                isLight ? "light" : "dark"
+            );
 
-menuBtn.addEventListener("click", () => {
+            themeToggle.textContent =
+                isLight ? "🌙" : "☀️";
 
-    navLinks.classList.toggle("show");
+        });
 
-});
+    }
 
+    /*=========================================
+      MOBILE MENU
+    =========================================*/
 
-document.querySelectorAll(".nav-links a").forEach(link => {
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
 
-    link.addEventListener("click", () => {
+    if (menuBtn && navLinks) {
 
-        navLinks.classList.remove("show");
+        menuBtn.addEventListener("click", () => {
 
-    });
+            navLinks.classList.toggle("show");
 
-});
+        });
 
+        document.querySelectorAll(".nav-links a").forEach(link => {
 
-/* =========================
-   TYPING TEXT
-========================= */
+            link.addEventListener("click", () => {
 
-const typing = document.getElementById("typing");
+                navLinks.classList.remove("show");
 
-const words = [
+            });
 
-    "Frontend Developer",
+        });
 
-    "Computer Science Student",
+    }
 
-    "Web Developer",
+    /*=========================================
+      TYPING EFFECT
+    =========================================*/
 
-    "Problem Solver"
+    const typing = document.getElementById("typing");
 
-];
+    const words = [
 
-let wordIndex = 0;
-let charIndex = 0;
-let deleting = false;
+        "Frontend Developer",
 
-function typeEffect() {
+        "Computer Science Student",
 
-    const current = words[wordIndex];
+        "Responsive Web Designer",
 
-    if (!deleting) {
+        "Always Learning 🚀"
 
-        typing.textContent = current.substring(0, charIndex);
+    ];
 
-        charIndex++;
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
 
-        if (charIndex > current.length) {
+    function typeWriter() {
 
-            deleting = true;
+        if (!typing) return;
 
-            setTimeout(typeEffect, 1200);
+        const currentWord = words[wordIndex];
 
-            return;
+        if (!deleting) {
 
-        }
+            typing.textContent =
+                currentWord.substring(0, charIndex);
 
-    } else {
+            charIndex++;
 
-        typing.textContent = current.substring(0, charIndex);
+            if (charIndex > currentWord.length) {
 
-        charIndex--;
+                deleting = true;
 
-        if (charIndex < 0) {
+                setTimeout(typeWriter, 1500);
 
-            deleting = false;
+                return;
 
-            wordIndex++;
+            }
 
-            if (wordIndex >= words.length) {
+        } else {
 
-                wordIndex = 0;
+            typing.textContent =
+                currentWord.substring(0, charIndex);
+
+            charIndex--;
+
+            if (charIndex < 0) {
+
+                deleting = false;
+
+                wordIndex++;
+
+                if (wordIndex >= words.length) {
+
+                    wordIndex = 0;
+
+                }
 
             }
 
         }
 
+        setTimeout(typeWriter, deleting ? 45 : 90);
+
     }
 
-    setTimeout(typeEffect, deleting ? 50 : 90);
+    typeWriter();
 
-}
-
-typeEffect();
-
-
-/* =========================
-   NAVBAR SHADOW
-========================= */
+});
+/*=========================================
+  NAVBAR SCROLL EFFECT
+=========================================*/
 
 const navbar = document.getElementById("navbar");
 
 window.addEventListener("scroll", () => {
 
-    if (window.scrollY > 50) {
+    if (!navbar) return;
+
+    if (window.scrollY > 60) {
 
         navbar.classList.add("scrolled");
 
@@ -149,71 +171,173 @@ window.addEventListener("scroll", () => {
     }
 
 });
-/* =========================
-   SCROLL PROGRESS BAR
-========================= */
+
+
+/*=========================================
+  SCROLL PROGRESS BAR
+=========================================*/
 
 const scrollBar = document.getElementById("scrollBar");
 
 window.addEventListener("scroll", () => {
 
+    if (!scrollBar) return;
+
     const scrollTop = window.scrollY;
 
-    const docHeight =
+    const documentHeight =
         document.documentElement.scrollHeight -
         window.innerHeight;
 
-    const progress = (scrollTop / docHeight) * 100;
+    const progress =
+        (scrollTop / documentHeight) * 100;
 
     scrollBar.style.width = progress + "%";
 
 });
 
 
-/* =========================
-   BACK TO TOP BUTTON
-========================= */
+/*=========================================
+  BACK TO TOP BUTTON
+=========================================*/
 
-const topBtn = document.getElementById("backToTop");
+const backToTop = document.getElementById("backToTop");
 
 window.addEventListener("scroll", () => {
 
-    if (window.scrollY > 400) {
+    if (!backToTop) return;
 
-        topBtn.classList.add("showTop");
+    if (window.scrollY > 500) {
+
+        backToTop.classList.add("showTop");
 
     } else {
 
-        topBtn.classList.remove("showTop");
+        backToTop.classList.remove("showTop");
 
     }
 
 });
 
-topBtn.addEventListener("click", () => {
+if (backToTop) {
 
-    window.scrollTo({
+    backToTop.addEventListener("click", () => {
 
-        top: 0,
+        window.scrollTo({
 
-        behavior: "smooth"
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    });
+
+}
+
+
+/*=========================================
+  ACTIVE NAVIGATION
+=========================================*/
+
+const sections = document.querySelectorAll("section");
+
+const navItems = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+
+    let currentSection = "";
+
+    sections.forEach(section => {
+
+        const sectionTop = section.offsetTop - 140;
+
+        const sectionHeight = section.offsetHeight;
+
+        if (
+
+            window.scrollY >= sectionTop &&
+            window.scrollY < sectionTop + sectionHeight
+
+        ) {
+
+            currentSection = section.getAttribute("id");
+
+        }
+
+    });
+
+    navItems.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (
+
+            link.getAttribute("href") === "#" + currentSection
+
+        ) {
+
+            link.classList.add("active");
+
+        }
 
     });
 
 });
 
 
-/* =========================
-   FADE IN ANIMATION
-========================= */
+/*=========================================
+  SMOOTH SCROLL
+=========================================*/
 
-const hiddenElements = document.querySelectorAll(".section");
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+    anchor.addEventListener("click", function (e) {
+
+        const target = document.querySelector(
+            this.getAttribute("href")
+        );
+
+        if (!target) return;
+
+        e.preventDefault();
+
+        target.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "start"
+
+        });
+
+    });
+
+});
+/*=========================================
+  CURSOR GLOW
+=========================================*/
+
+const cursorGlow = document.getElementById("cursorGlow");
+
+document.addEventListener("mousemove", (e) => {
+
+    if (!cursorGlow) return;
+
+    cursorGlow.style.left = `${e.clientX}px`;
+    cursorGlow.style.top = `${e.clientY}px`;
+
+});
+
+
+/*=========================================
+  FADE IN ANIMATION
+=========================================*/
 
 const observer = new IntersectionObserver(
 
 (entries) => {
 
-entries.forEach(entry => {
+entries.forEach((entry) => {
 
 if (entry.isIntersecting) {
 
@@ -227,238 +351,115 @@ entry.target.classList.add("show");
 
 {
 
-threshold: 0.15
+threshold:0.15
 
 }
 
 );
 
-hiddenElements.forEach(section => {
+document.querySelectorAll(".section").forEach(section=>{
 
 observer.observe(section);
 
 });
 
 
-/* =========================
-   ACTIVE NAVIGATION
-========================= */
+/*=========================================
+  FLOATING CARDS
+=========================================*/
 
-const sections = document.querySelectorAll("section");
+const floatingCards=document.querySelectorAll(".floating-card");
 
-const navItems = document.querySelectorAll(".nav-links a");
+floatingCards.forEach((card,index)=>{
 
-window.addEventListener("scroll", () => {
+card.style.animationDelay=`${index*0.4}s`;
 
-let current = "";
+});
 
-sections.forEach(section => {
 
-const top = section.offsetTop - 120;
+/*=========================================
+  PARALLAX BACKGROUND
+=========================================*/
 
-const height = section.clientHeight;
+const blur1=document.querySelector(".blur1");
+const blur2=document.querySelector(".blur2");
 
-if (window.scrollY >= top) {
+document.addEventListener("mousemove",(e)=>{
 
-current = section.getAttribute("id");
+const x=e.clientX/window.innerWidth;
+const y=e.clientY/window.innerHeight;
+
+if(blur1){
+
+blur1.style.transform=
+`translate(${x*18}px,${y*18}px)`;
+
+}
+
+if(blur2){
+
+blur2.style.transform=
+`translate(${-x*18}px,${-y*18}px)`;
 
 }
 
 });
 
-navItems.forEach(link => {
 
-link.classList.remove("active");
+/*=========================================
+  CONTACT FORM
+=========================================*/
 
-if (link.getAttribute("href") === "#" + current) {
+const contactForm=document.querySelector(".contact-form form");
 
-link.classList.add("active");
+if(contactForm){
 
-}
-
-});
-
-});
-
-
-/* =========================
-   CURSOR GLOW
-========================= */
-
-const glow = document.getElementById("cursorGlow");
-
-document.addEventListener("mousemove", (e) => {
-
-glow.style.left = e.clientX + "px";
-
-glow.style.top = e.clientY + "px";
-
-});
-
-
-/* =========================
-   FLOATING ANIMATION
-========================= */
-
-const floatingItems = document.querySelectorAll(".floating");
-
-floatingItems.forEach((item, index) => {
-
-item.style.animationDelay = `${index * 0.4}s`;
-
-});
-/* =========================
-   CODE WINDOW TYPING
-========================= */
-
-const codeTyping = document.getElementById("codeTyping");
-
-const codeLines = [
-
-`const developer = {`,
-`  name: "Iffa Masoud",`,
-`  role: "Computer Science Student",`,
-`  skills: ["HTML", "CSS", "JavaScript"],`,
-`  learning: "Frontend Development",`,
-`  passion: "Building Beautiful Websites",`,
-`};`,
-``,
-`console.log("Welcome to my portfolio!");`
-
-];
-
-let line = 0;
-let character = 0;
-
-function typeCode() {
-
-    if (!codeTyping) return;
-
-    if (line < codeLines.length) {
-
-        if (character < codeLines[line].length) {
-
-            codeTyping.innerHTML += codeLines[line].charAt(character);
-
-            character++;
-
-            setTimeout(typeCode, 25);
-
-        }
-
-        else {
-
-            codeTyping.innerHTML += "\n";
-
-            line++;
-
-            character = 0;
-
-            setTimeout(typeCode, 250);
-
-        }
-
-    }
-
-}
-
-window.addEventListener("load", () => {
-
-    setTimeout(typeCode, 1000);
-
-});
-
-
-/* =========================
-   CONTACT FORM
-========================= */
-
-const contactForm = document.querySelector(".contact-form");
-
-if (contactForm) {
-
-contactForm.addEventListener("submit", function(e){
+contactForm.addEventListener("submit",(e)=>{
 
 e.preventDefault();
 
-alert("Thank you! Your message has been received.");
+const button=contactForm.querySelector("button");
+
+button.textContent="Message Sent ✓";
+
+button.disabled=true;
+
+setTimeout(()=>{
+
+button.textContent="Send Message";
+
+button.disabled=false;
 
 contactForm.reset();
 
+},2500);
+
 });
 
 }
 
 
-/* =========================
-   BUTTON HOVER EFFECT
-========================= */
+/*=========================================
+  DEVELOPER CONSOLE MESSAGE
+=========================================*/
 
-const buttons = document.querySelectorAll("button, a");
+console.log(
+"%cWelcome to Iffa Masoud's Portfolio",
+"font-size:20px;font-weight:bold;color:#4F8CFF;"
+);
 
-buttons.forEach(btn => {
-
-btn.addEventListener("mouseenter", () => {
-
-btn.style.transform = "translateY(-3px)";
-
-});
-
-btn.addEventListener("mouseleave", () => {
-
-btn.style.transform = "";
-
-});
-
-});
+console.log(
+"%cDesigned & Developed by Iffa Masoud 🚀",
+"font-size:14px;color:#888;"
+);
 
 
-/* =========================
-   PARALLAX BLOBS
-========================= */
+/*=========================================
+  PAGE LOADED
+=========================================*/
 
-const blur1 = document.querySelector(".blur1");
-const blur2 = document.querySelector(".blur2");
-
-window.addEventListener("mousemove", (e) => {
-
-const x = e.clientX / window.innerWidth;
-const y = e.clientY / window.innerHeight;
-
-if (blur1) {
-
-blur1.style.transform =
-`translate(${x*20}px, ${y*20}px)`;
-
-}
-
-if (blur2) {
-
-blur2.style.transform =
-`translate(${-x*20}px, ${-y*20}px)`;
-
-}
-
-});
-
-
-/* =========================
-   PAGE LOADER
-========================= */
-
-window.addEventListener("load", () => {
+window.addEventListener("load",()=>{
 
 document.body.classList.add("loaded");
 
 });
-
-
-/* =========================
-   CONSOLE MESSAGE
-========================= */
-
-console.log("%cWelcome to Iffa Masoud's Portfolio",
-"font-size:20px;font-weight:bold;color:#4F8CFF;");
-
-console.log("%cThanks for visiting! 🚀",
-"font-size:14px;color:#888;");
