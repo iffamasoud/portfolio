@@ -230,14 +230,6 @@ section {
   margin-bottom: 15px;
 }
 
-.skill-card ul {
-  list-style: none;
-}
-
-.skill-card li {
-  padding: 5px 0;
-}
-
 /* ===== PROJECTS ===== */
 .projects-grid {
   display: grid;
@@ -393,4 +385,81 @@ section {
   .hero-left h1 {
     font-size: 2.2rem;
   }
+}
+
+/* ===== TYPING CURSOR ===== */
+.cursor {
+  display: inline-block;
+  margin-left: 3px;
+  animation: blink 0.8s infinite;
+  color: var(--accent);
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ===== SKILL PROGRESS BARS ===== */
+.skill-bar {
+  margin-bottom: 15px;
+}
+.skill-bar span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.bar {
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 20px;
+  height: 8px;
+  overflow: hidden;
+}
+.fill {
+  height: 100%;
+  background-color: var(--accent);
+  border-radius: 20px;
+  width: 0;
+  transition: width 1.2s ease;
+}
+
+/* ===== SCROLL PROGRESS BAR ===== */
+#scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background-color: var(--accent);
+  z-index: 999;
+  transition: width 0.1s ease;
+}
+
+/* ===== BACK TO TOP BUTTON ===== */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  z-index: 999;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+#backToTop:hover {
+  transform: translateY(-4px);
+}
+
+/* ===== ACTIVE NAV LINK ===== */
+.nav-links a.active {
+  color: var(--accent);
+  font-weight: 700;
 }
