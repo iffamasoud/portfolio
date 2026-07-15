@@ -1,164 +1,445 @@
-// ===== DARK MODE TOGGLE =====
-const darkModeToggle = document.getElementById('darkModeToggle');
+/* ==========================================
+   PORTFOLIO JAVASCRIPT
+   PART 1
+========================================== */
+
+/* ===============================
+   MOBILE MENU
+================================ */
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("active");
+
+    });
+
+});
+
+
+/* ===============================
+   SMOOTH SCROLL
+================================ */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+    anchor.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        const target = document.querySelector(this.getAttribute("href"));
+
+        if (target) {
+
+            target.scrollIntoView({
+
+                behavior: "smooth"
+
+            });
+
+        }
+
+    });
+
+});
+
+
+/* ===============================
+   NAVBAR SCROLL EFFECT
+================================ */
+
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 40) {
+
+        navbar.classList.add("scrolled");
+
+    }
+
+    else {
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+});
+
+
+/* ===============================
+   TYPING EFFECT
+================================ */
+
+const typing = document.getElementById("typing");
+
+const words = [
+
+    "Frontend Developer",
+
+    "Computer Science Student",
+
+    "Problem Solver",
+
+    "Future Software Engineer"
+
+];
+
+let wordIndex = 0;
+let letterIndex = 0;
+let deleting = false;
+
+function typingAnimation() {
+
+    const currentWord = words[wordIndex];
+
+    if (!deleting) {
+
+        typing.textContent =
+            currentWord.substring(0, letterIndex + 1);
+
+        letterIndex++;
+
+        if (letterIndex === currentWord.length) {
+
+            deleting = true;
+
+            setTimeout(typingAnimation, 1800);
+
+            return;
+
+        }
+
+    }
+
+    else {
+
+        typing.textContent =
+            currentWord.substring(0, letterIndex - 1);
+
+        letterIndex--;
+
+        if (letterIndex === 0) {
+
+            deleting = false;
+
+            wordIndex++;
+
+            if (wordIndex >= words.length) {
+
+                wordIndex = 0;
+
+            }
+
+        }
+
+    }
+
+    setTimeout(
+
+        typingAnimation,
+
+        deleting ? 55 : 110
+
+    );
+
+}
+
+typingAnimation();
+
+
+/* ===============================
+   DARK / LIGHT MODE
+================================ */
+
+const themeToggle = document.getElementById("themeToggle");
+
 const body = document.body;
 
-// Load saved preference
-if (localStorage.getItem('theme') === 'dark') {
-  body.classList.add('dark-mode');
-  darkModeToggle.textContent = '☀️';
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "light") {
+
+    body.classList.add("light-theme");
+
+    themeToggle.innerHTML = "☀️";
+
 }
 
-darkModeToggle.addEventListener('click', () => {
-  body.classList.toggle('dark-mode');
-  const isDark = body.classList.contains('dark-mode');
-  darkModeToggle.textContent = isDark ? '☀️' : '🌙';
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
-});
+themeToggle.addEventListener("click", () => {
 
-// ===== MOBILE MENU TOGGLE =====
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
+    body.classList.toggle("light-theme");
 
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
+    if (body.classList.contains("light-theme")) {
 
-// Close mobile menu after clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-  });
-});
+        localStorage.setItem("theme", "light");
 
-// ===== FADE-IN ON SCROLL =====
-const faders = document.querySelectorAll('.fade-in');
+        themeToggle.innerHTML = "☀️";
 
-const appearOptions = {
-  threshold: 0.2,
-  rootMargin: "0px 0px -50px 0px"
-};
-
-const appearOnScroll = new IntersectionObserver(function (entries, observer) {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
     }
-  });
-}, appearOptions);
 
-faders.forEach(fader => {
-  appearOnScroll.observe(fader);
+    else {
+
+        localStorage.setItem("theme", "dark");
+
+        themeToggle.innerHTML = "🌙";
+
+    }
+
 });
 
-// ===== CONTACT FORM (placeholder handler) =====
-const contactForm = document.querySelector('.contact-form');
 
-if (contactForm) {
-  contactForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    alert("Thanks for reaching out! I'll get back to you soon.");
-    contactForm.reset();
-  });
+/* ===============================
+   HERO IMAGE FLOATING
+================================ */
+
+const profile = document.querySelector(".profile-wrapper");
+
+let move = 0;
+
+setInterval(() => {
+
+    move += 0.05;
+
+    profile.style.transform =
+
+        `translateY(${Math.sin(move) * 10}px)`;
+
+}, 20);
+/* ==========================================
+   PART 2
+========================================== */
+
+
+/* ===============================
+   SCROLL REVEAL ANIMATION
+================================ */
+
+const revealElements = document.querySelectorAll(
+".section, .project-card, .skill-box, .info-card, .research-card, .certificate-card"
+);
+
+const revealObserver = new IntersectionObserver(
+
+(entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
 }
 
-// ===== TYPING ANIMATION =====
-const typingText = document.getElementById('typingText');
-const phrases = [
-  "Computer Science Student",
-  "UI/UX Designer",
-  "Frontend Developer"
-];
-let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
+});
 
-function typeLoop() {
-  const currentPhrase = phrases[phraseIndex];
+},
 
-  if (!isDeleting) {
-    typingText.textContent = currentPhrase.substring(0, charIndex + 1);
-    charIndex++;
-    if (charIndex === currentPhrase.length) {
-      isDeleting = true;
-      setTimeout(typeLoop, 1500);
-      return;
-    }
-  } else {
-    typingText.textContent = currentPhrase.substring(0, charIndex - 1);
-    charIndex--;
-    if (charIndex === 0) {
-      isDeleting = false;
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-    }
-  }
+{
 
-  setTimeout(typeLoop, isDeleting ? 50 : 100);
+threshold:0.15
+
 }
 
-if (typingText) typeLoop();
+);
 
-// ===== SCROLL PROGRESS BAR =====
-const scrollProgress = document.getElementById('scrollProgress');
+revealElements.forEach(item=>{
 
-window.addEventListener('scroll', () => {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-  if (scrollProgress) scrollProgress.style.width = scrollPercent + '%';
+revealObserver.observe(item);
+
 });
 
-// ===== BACK TO TOP BUTTON =====
-const backToTop = document.getElementById('backToTop');
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 400) {
-    backToTop.style.display = 'flex';
-  } else {
-    backToTop.style.display = 'none';
-  }
+
+/* ===============================
+   ACTIVE NAVIGATION
+================================ */
+
+const sections = document.querySelectorAll("section[id]");
+
+const navigationLinks =
+document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll",()=>{
+
+let currentSection="";
+
+sections.forEach(section=>{
+
+const sectionTop=section.offsetTop-120;
+
+const sectionHeight=section.clientHeight;
+
+if(pageYOffset>=sectionTop){
+
+currentSection=section.getAttribute("id");
+
+}
+
 });
 
-backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+navigationLinks.forEach(link=>{
+
+link.classList.remove("active");
+
+if(link.getAttribute("href")==="#" + currentSection){
+
+link.classList.add("active");
+
+}
+
 });
 
-// ===== ACTIVE NAV LINK ON SCROLL =====
-const sections = document.querySelectorAll('section[id]');
-const navLinksAll = document.querySelectorAll('.nav-links a');
-
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
-    if (window.scrollY >= sectionTop) {
-      current = section.getAttribute('id');
-    }
-  });
-
-  navLinksAll.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === '#' + current) {
-      link.classList.add('active');
-    }
-  });
 });
 
-// ===== ANIMATE SKILL BARS WHEN VISIBLE =====
-const skillBars = document.querySelectorAll('.fill');
 
-skillBars.forEach(bar => {
-  bar.dataset.target = bar.style.width;
-  bar.style.width = '0';
+
+/* ===============================
+   BACK TO TOP BUTTON
+================================ */
+
+const backToTop=document.getElementById("backToTop");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>500){
+
+backToTop.classList.add("show-top");
+
+}
+
+else{
+
+backToTop.classList.remove("show-top");
+
+}
+
 });
 
-const skillObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.width = entry.target.dataset.target;
-      skillObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.3 });
+backToTop.addEventListener("click",()=>{
 
-skillBars.forEach(bar => skillObserver.observe(bar));
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+});
+
+
+
+/* ===============================
+   SCROLL PROGRESS BAR
+================================ */
+
+const scrollBar=document.getElementById("scrollBar");
+
+window.addEventListener("scroll",()=>{
+
+const totalHeight=
+
+document.documentElement.scrollHeight-
+
+window.innerHeight;
+
+const progress=
+
+(window.scrollY/totalHeight)*100;
+
+scrollBar.style.width=progress+"%";
+
+});
+
+
+
+/* ===============================
+   BUTTON RIPPLE EFFECT
+================================ */
+
+const buttons=document.querySelectorAll(
+
+".primary-btn,.secondary-btn"
+
+);
+
+buttons.forEach(button=>{
+
+button.addEventListener("mouseenter",()=>{
+
+button.classList.add("hovering");
+
+});
+
+button.addEventListener("mouseleave",()=>{
+
+button.classList.remove("hovering");
+
+});
+
+});
+
+
+
+/* ===============================
+   PROJECT CARD HOVER
+================================ */
+
+const projectCards=document.querySelectorAll(".project-card");
+
+projectCards.forEach(card=>{
+
+card.addEventListener("mousemove",(e)=>{
+
+const rect=card.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+card.style.setProperty("--x",x+"px");
+
+card.style.setProperty("--y",y+"px");
+
+});
+
+});
+
+
+
+/* ===============================
+   PARALLAX HERO EFFECT
+================================ */
+
+const hero=document.querySelector(".hero");
+
+window.addEventListener("scroll",()=>{
+
+const value=window.scrollY;
+
+hero.style.backgroundPositionY=value*0.3+"px";
+
+});
+
+
+
+/* ===============================
+   CURRENT YEAR
+================================ */
+
+const year=document.getElementById("year");
+
+if(year){
+
+year.textContent=new Date().getFullYear();
+
+}

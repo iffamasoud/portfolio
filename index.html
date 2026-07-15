@@ -1,184 +1,768 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Iffa Masoud | Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Iffa Masoud | Computer Science Student</title>
+
+    <meta name="description"
+        content="Portfolio of Iffa Masoud - BS Computer Science Student, Frontend Developer and aspiring Software Engineer.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- NAVBAR -->
+<div class="background-grid"></div>
+
+<div class="background-blur blur1"></div>
+<div class="background-blur blur2"></div>
+
+<!-- ================= NAVIGATION ================= -->
+
 <header class="navbar">
-  <div class="logo">IFFA MASOUD</div>
-  <nav class="nav-links" id="navLinks">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <div class="nav-actions">
-    <button id="darkModeToggle" class="dark-toggle" aria-label="Toggle dark mode">🌙</button>
-    <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">☰</button>
-  </div>
+
+    <div class="logo">
+
+        <span class="logo-text">IM</span>
+
+    </div>
+
+    <nav class="nav-links" id="navLinks">
+
+        <a href="#home">Home</a>
+
+        <a href="#about">About</a>
+
+        <a href="#skills">Skills</a>
+
+        <a href="#projects">Projects</a>
+
+        <a href="#research">Research</a>
+
+        <a href="#certificates">Certificates</a>
+
+        <a href="#contact">Contact</a>
+
+    </nav>
+
+    <div class="nav-buttons">
+
+        <button id="themeToggle">
+
+            🌙
+
+        </button>
+
+        <button id="menuBtn">
+
+            ☰
+
+        </button>
+
+    </div>
+
 </header>
 
-<!-- HERO -->
-<section id="home" class="hero fade-in">
-  <div class="hero-left">
-    <h1>Hi, I'm Iffa 👋</h1>
-    <p class="subtitle"><span id="typingText"></span><span class="cursor">|</span></p>
-    <p class="hero-text">
-      I am a Computer Science student passionate about UI/UX design and frontend development.
-      I create clean, responsive, and user-friendly digital experiences by combining creativity with technology.
-    </p>
-    <div class="hero-buttons">
-      <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="assests/CV.pdf" class="btn btn-secondary" download>Download CV</a>
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-left">
+
+            <p class="small-heading">
+
+                COMPUTER SCIENCE STUDENT
+
+            </p>
+
+            <h1>
+
+                IFFA <br>
+
+                MASOUD
+
+            </h1>
+
+            <h2>
+
+                <span id="typing"></span>
+
+            </h2>
+
+            <p class="hero-description">
+
+                Passionate about building modern, responsive and user-friendly web
+                applications through clean code and thoughtful design.
+
+                Currently pursuing a Bachelor's degree in Computer Science while
+                continuously improving my frontend development skills.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#projects" class="primary-btn">
+
+                    Explore My Work
+
+                </a>
+
+                <a href="assests/CV.pdf" download class="secondary-btn">
+
+                    Download CV
+
+                </a>
+
+            </div>
+
+            <div class="hero-stats">
+
+                <div class="stat-card">
+
+                    <h3>
+
+                        BSCS
+
+                    </h3>
+
+                    <p>
+
+                        NFC-IET Multan
+
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>
+
+                        2024-2028
+
+                    </h3>
+
+                    <p>
+
+                        Undergraduate
+
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>
+
+                        Frontend
+
+                    </h3>
+
+                    <p>
+
+                        HTML • CSS • JavaScript
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-right">
+
+            <div class="image-glow"></div>
+
+            <div class="profile-wrapper">
+
+                <img src="images/picture.jpeg"
+                    alt="Iffa Masoud"
+                    class="profile-image">
+
+            </div>
+
+        </div>
+
     </div>
-  </div>
-  <div class="hero-right">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="profile-card">
-      <img src="images/picture.jpeg" alt="Iffa Masoud" class="profile-img">
+
+    <div class="scroll-indicator">
+
+        <span></span>
+
     </div>
-  </div>
+
+</section>
+<!-- ================= ABOUT ================= -->
+
+<section class="about section" id="about">
+
+    <div class="section-title">
+        <p>WHO I AM</p>
+        <h2>About Me</h2>
+    </div>
+
+    <div class="about-container">
+
+        <div class="about-text">
+
+            <p>
+                I'm <strong>Iffa Masoud</strong>, a Bachelor of Computer Science student
+                at NFC Institute of Engineering and Technology, Multan.
+            </p>
+
+            <p>
+                I enjoy transforming ideas into responsive and modern websites using
+                HTML, CSS and JavaScript while continuously improving my programming
+                and problem-solving skills.
+            </p>
+
+            <p>
+                My goal is to become a skilled software engineer by building
+                real-world projects, learning modern technologies and gaining
+                practical industry experience through internships.
+            </p>
+
+        </div>
+
+        <div class="about-cards">
+
+            <div class="info-card">
+
+                <h3>Education</h3>
+
+                <p>BS Computer Science</p>
+
+                <span>NFC IET Multan</span>
+
+            </div>
+
+            <div class="info-card">
+
+                <h3>Duration</h3>
+
+                <p>2024 - 2028</p>
+
+                <span>Undergraduate</span>
+
+            </div>
+
+            <div class="info-card">
+
+                <h3>Location</h3>
+
+                <p>Multan</p>
+
+                <span>Punjab, Pakistan</span>
+
+            </div>
+
+            <div class="info-card">
+
+                <h3>Focus</h3>
+
+                <p>Frontend Development</p>
+
+                <span>Responsive Web Design</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="about fade-in">
-  <h2 class="section-heading">About Me</h2>
-  <div class="about-card">
-    <p>I am a BS Computer Science student at NFC Institute of Engineering and Technology, Multan.</p>
-    <p>I am interested in UI/UX design, frontend development, and building digital products that provide a better user experience.</p>
-    <p>Currently, I am improving my skills in HTML, CSS, JavaScript, Figma, SQL, and modern web development practices.</p>
-  </div>
+
+
+<!-- ================= SKILLS ================= -->
+
+<section class="skills section" id="skills">
+
+    <div class="section-title">
+
+        <p>TECHNICAL SKILLS</p>
+
+        <h2>Technology Stack</h2>
+
+    </div>
+
+    <div class="skills-grid">
+
+        <div class="skill-box">
+
+            <h3>Languages</h3>
+
+            <div class="skill-tags">
+
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>JavaScript</span>
+                <span>C</span>
+                <span>C++</span>
+                <span>SQL</span>
+
+            </div>
+
+        </div>
+
+        <div class="skill-box">
+
+            <h3>Tools</h3>
+
+            <div class="skill-tags">
+
+                <span>Git</span>
+                <span>GitHub</span>
+                <span>VS Code</span>
+
+            </div>
+
+        </div>
+
+        <div class="skill-box">
+
+            <h3>Currently Learning</h3>
+
+            <div class="skill-tags">
+
+                <span>Advanced JavaScript</span>
+                <span>Responsive Design</span>
+                <span>Modern CSS</span>
+
+            </div>
+
+        </div>
+
+        <div class="skill-box">
+
+            <h3>Soft Skills</h3>
+
+            <div class="skill-tags">
+
+                <span>Problem Solving</span>
+                <span>Teamwork</span>
+                <span>Communication</span>
+                <span>Time Management</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
-<!-- SKILLS -->
-<section id="skills" class="skills fade-in">
-  <h2 class="section-heading">Skills</h2>
-  <div class="skills-grid">
-    <div class="skill-card">
-      <h3>Frontend Development</h3>
-      <div class="skill-bar"><span>HTML</span><div class="bar"><div class="fill" style="width:85%"></div></div></div>
-      <div class="skill-bar"><span>CSS</span><div class="bar"><div class="fill" style="width:80%"></div></div></div>
-      <div class="skill-bar"><span>JavaScript</span><div class="bar"><div class="fill" style="width:65%"></div></div></div>
-      <div class="skill-bar"><span>Responsive Design</span><div class="bar"><div class="fill" style="width:75%"></div></div></div>
+
+
+<!-- ================= PROJECTS ================= -->
+
+<section class="projects section" id="projects">
+
+    <div class="section-title">
+
+        <p>MY WORK</p>
+
+        <h2>Featured Project</h2>
+
     </div>
-    <div class="skill-card">
-      <h3>Programming</h3>
-      <div class="skill-bar"><span>C++</span><div class="bar"><div class="fill" style="width:70%"></div></div></div>
-      <div class="skill-bar"><span>C</span><div class="bar"><div class="fill" style="width:65%"></div></div></div>
-      <div class="skill-bar"><span>SQL</span><div class="bar"><div class="fill" style="width:70%"></div></div></div>
+
+    <div class="featured-project">
+
+        <div class="featured-image">
+
+            <img src="images/project1.jpg"
+                 alt="Library Management System">
+
+        </div>
+
+        <div class="featured-content">
+
+            <h3>Library Management System</h3>
+
+            <p>
+
+                A group project developed using C++ that manages books,
+                users and library records efficiently through an easy-to-use
+                desktop interface.
+
+            </p>
+
+            <div class="project-tech">
+
+                <span>C++</span>
+                <span>OOP</span>
+
+            </div>
+
+            <div class="project-buttons">
+
+                <a href="https://github.com/iffamasoud/library-management-system"
+                   target="_blank"
+                   class="primary-btn">
+
+                    GitHub
+
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
-    <div class="skill-card">
-      <h3>Tools</h3>
-      <div class="skill-bar"><span>Git &amp; GitHub</span><div class="bar"><div class="fill" style="width:70%"></div></div></div>
-      <div class="skill-bar"><span>VS Code</span><div class="bar"><div class="fill" style="width:85%"></div></div></div>
-      <div class="skill-bar"><span>Figma</span><div class="bar"><div class="fill" style="width:60%"></div></div></div>
+
+
+
+    <div class="section-title small-title">
+
+        <h2>More Projects</h2>
+
     </div>
-  </div>
+
+    <div class="projects-grid">
+
+        <div class="project-card">
+
+            <img src="images/project2.jpg"
+                 alt="Portfolio Website">
+
+            <div class="project-content">
+
+                <h3>Personal Portfolio</h3>
+
+                <p>
+
+                    A responsive portfolio website designed and developed
+                    using HTML, CSS and JavaScript.
+
+                </p>
+
+                <div class="project-tech">
+
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+
+                </div>
+
+                <a href="#"
+                   class="secondary-btn">
+
+                    Live Demo
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="project-card">
+
+            <img src="images/project3.jpg"
+                 alt="Future Project">
+
+            <div class="project-content">
+
+                <h3>Next Project</h3>
+
+                <p>
+
+                    This space will showcase my next completed
+                    software project.
+
+                </p>
+
+                <div class="project-tech">
+
+                    <span>Coming Soon</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= RESEARCH ================= -->
+
+<section class="research section" id="research">
+
+    <div class="section-title">
+        <p>RESEARCH</p>
+        <h2>Learning Through Research</h2>
+    </div>
+
+    <div class="research-grid">
+
+        <div class="research-card">
+            <div class="research-status completed">Completed</div>
+            <h3>Responsive Web Design</h3>
+            <p>
+                Explored responsive layouts using Flexbox, Grid and media queries
+                to create websites that adapt across different screen sizes.
+            </p>
+        </div>
+
+        <div class="research-card">
+            <div class="research-status completed">Completed</div>
+            <h3>Modern CSS</h3>
+            <p>
+                Researched animations, transitions, glassmorphism,
+                gradients and modern UI practices for professional websites.
+            </p>
+        </div>
+
+        <div class="research-card">
+            <div class="research-status progress">In Progress</div>
+            <h3>JavaScript DOM</h3>
+            <p>
+                Learning how JavaScript manipulates HTML elements,
+                events and interactive components.
+            </p>
+        </div>
+
+    </div>
+
 </section>
 
-<!-- PROJECTS -->
-<section id="projects" class="projects fade-in">
-  <h2 class="section-heading">Projects</h2>
-  <div class="projects-grid">
 
-    <div class="project-card">
-      <img src="images/project1.jpg" alt="Library Management System">
-      <div class="project-info">
-        <h3>Library Management System</h3>
-        <p>A group project developed to manage library operations, including books, users, and records.</p>
-        <span class="tech-tag">C++</span>
-        <a href="https://github.com/iffamasoud/library-management-system" target="_blank" class="btn btn-small">View Project</a>
-      </div>
+
+<!-- ================= CERTIFICATES ================= -->
+
+<section class="certificates section" id="certificates">
+
+    <div class="section-title">
+        <p>CERTIFICATES</p>
+        <h2>Achievements & Certifications</h2>
     </div>
 
-    <div class="project-card">
-      <img src="images/project2.jpg" alt="Responsive Portfolio Website">
-      <div class="project-info">
-        <h3>Responsive Portfolio Website</h3>
-        <p>A personal portfolio website designed to showcase my skills, projects, and learning journey.</p>
-        <span class="tech-tag">HTML</span>
-        <span class="tech-tag">CSS</span>
-        <span class="tech-tag">JavaScript</span>
-        <a href="#" class="btn btn-small">View Project</a>
-      </div>
+    <div class="certificate-grid">
+
+        <div class="certificate-card">
+
+            <h3>Your Certificate</h3>
+
+            <p>
+                Add your completed certificate here.
+            </p>
+
+            <a href="#">
+
+                View Certificate
+
+            </a>
+
+        </div>
+
+        <div class="certificate-card">
+
+            <h3>Your Certificate</h3>
+
+            <p>
+                Add your next completed certificate here.
+            </p>
+
+            <a href="#">
+
+                View Certificate
+
+            </a>
+
+        </div>
+
+        <div class="certificate-card">
+
+            <h3>Future Certifications</h3>
+
+            <p>
+                This section will continue growing as I complete
+                professional certifications.
+            </p>
+
+        </div>
+
     </div>
 
-    <div class="project-card">
-      <img src="images/project3.jpg" alt="UI/UX Design Project">
-      <div class="project-info">
-        <h3>UI/UX Design Project</h3>
-        <p>A Figma-based design project focused on creating simple and user-friendly interfaces.</p>
-        <span class="tech-tag">Figma</span>
-        <a href="#" class="btn btn-small">View Project</a>
-      </div>
-    </div>
-
-  </div>
 </section>
 
-<!-- CERTIFICATIONS / LEARNING -->
-<section id="learning" class="learning fade-in">
-  <h2 class="section-heading">Certifications &amp; Learning</h2>
-  <div class="timeline">
-    <div class="timeline-item">
-      <span class="dot"></span>
-      <p>UI/UX Design Learning</p>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section class="contact section" id="contact">
+
+    <div class="section-title">
+
+        <p>CONTACT</p>
+
+        <h2>Let's Connect</h2>
+
     </div>
-    <div class="timeline-item">
-      <span class="dot"></span>
-      <p>Frontend Development Practice</p>
+
+    <div class="contact-container">
+
+        <div class="contact-info">
+
+            <h3>
+
+                Ready to collaborate?
+
+            </h3>
+
+            <p>
+
+                I'm currently looking for internship opportunities,
+                collaborations and learning experiences.
+
+            </p>
+
+            <div class="contact-item">
+
+                <h4>Email</h4>
+
+                <a href="mailto:iffamasoud841@gmail.com">
+
+                    iffamasoud841@gmail.com
+
+                </a>
+
+            </div>
+
+            <div class="contact-item">
+
+                <h4>GitHub</h4>
+
+                <a href="https://github.com/iffamasoud" target="_blank">
+
+                    github.com/iffamasoud
+
+                </a>
+
+            </div>
+
+            <div class="contact-item">
+
+                <h4>LinkedIn</h4>
+
+                <a href="https://www.linkedin.com/in/iffa-m-983188235"
+                    target="_blank">
+
+                    linkedin.com/in/iffa-m-983188235
+
+                </a>
+
+            </div>
+
+            <div class="contact-item">
+
+                <h4>Location</h4>
+
+                <p>
+
+                    Multan, Pakistan
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <form class="contact-form">
+
+            <input
+                type="text"
+                placeholder="Your Name"
+                required>
+
+            <input
+                type="email"
+                placeholder="Your Email"
+                required>
+
+            <input
+                type="text"
+                placeholder="Subject">
+
+            <textarea
+                rows="7"
+                placeholder="Write your message..."
+                required></textarea>
+
+            <button type="submit"
+                class="primary-btn">
+
+                Send Message
+
+            </button>
+
+        </form>
+
     </div>
-    <div class="timeline-item">
-      <span class="dot"></span>
-      <p>Web Development Projects</p>
-    </div>
-    <div class="timeline-item">
-      <span class="dot"></span>
-      <p>Continuous Learning in Technology</p>
-    </div>
-  </div>
+
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="contact fade-in">
-  <div class="contact-left">
-    <h2 class="section-heading">Let's Connect!</h2>
-    <p>I am open to internship opportunities, collaborations, and learning experiences.</p>
-    <p><strong>Email:</strong> <a href="mailto:iffamasoud841@gmail.com">iffamasoud841@gmail.com</a></p>
-    <p><strong>GitHub:</strong> <a href="https://github.com/iffamasoud" target="_blank">github.com/iffamasoud</a></p>
-    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/iffa-m-983188235" target="_blank">linkedin.com/in/iffa-m-983188235</a></p>
-  </div>
-  <div class="contact-right">
-    <form class="contact-form">
-      <input type="text" placeholder="Name" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="Message" rows="5" required></textarea>
-      <button type="submit" class="btn btn-primary">Send Message</button>
-    </form>
-  </div>
-</section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <p>&copy; 2026 Iffa Masoud</p>
-  <p>Designed and Built by Iffa</p>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <h2>
+
+            IFFA MASOUD
+
+        </h2>
+
+        <p>
+
+            Computer Science Student • Frontend Developer
+
+        </p>
+
+        <p class="footer-copy">
+
+            © 2026 Iffa Masoud.
+            Designed & Developed with HTML, CSS & JavaScript.
+
+        </p>
+
+    </div>
+
 </footer>
 
-<!-- SCROLL PROGRESS BAR -->
-<div id="scrollProgress"></div>
 
-<!-- BACK TO TOP BUTTON -->
-<button id="backToTop" aria-label="Back to top">↑</button>
+
+<!-- ================= EXTRA ELEMENTS ================= -->
+
+<div id="scrollBar"></div>
+
+<button id="backToTop">
+
+    ↑
+
+</button>
+
+
 
 <script src="script.js"></script>
+
 </body>
+
 </html>
