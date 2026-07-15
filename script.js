@@ -1,83 +1,67 @@
 /* ==========================================
-   PORTFOLIO JAVASCRIPT
-   PART 1
+   PORTFOLIO V2
+   IFFA MASOUD
 ========================================== */
 
-/* ===============================
+/* =========================
+   THEME TOGGLE
+========================= */
+
+const themeBtn = document.getElementById("themeToggle");
+
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    themeBtn.textContent = "☀️";
+}
+
+themeBtn.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+
+        localStorage.setItem("theme", "dark");
+        themeBtn.textContent = "☀️";
+
+    } else {
+
+        localStorage.setItem("theme", "light");
+        themeBtn.textContent = "🌙";
+
+    }
+
+});
+
+
+/* =========================
    MOBILE MENU
-================================ */
+========================= */
 
 const menuBtn = document.getElementById("menuBtn");
+
 const navLinks = document.getElementById("navLinks");
 
 menuBtn.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
+
+    navLinks.classList.toggle("show");
+
 });
+
 
 document.querySelectorAll(".nav-links a").forEach(link => {
 
     link.addEventListener("click", () => {
 
-        navLinks.classList.remove("active");
+        navLinks.classList.remove("show");
 
     });
 
 });
 
 
-/* ===============================
-   SMOOTH SCROLL
-================================ */
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-    anchor.addEventListener("click", function (e) {
-
-        e.preventDefault();
-
-        const target = document.querySelector(this.getAttribute("href"));
-
-        if (target) {
-
-            target.scrollIntoView({
-
-                behavior: "smooth"
-
-            });
-
-        }
-
-    });
-
-});
-
-
-/* ===============================
-   NAVBAR SCROLL EFFECT
-================================ */
-
-const navbar = document.querySelector(".navbar");
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 40) {
-
-        navbar.classList.add("scrolled");
-
-    }
-
-    else {
-
-        navbar.classList.remove("scrolled");
-
-    }
-
-});
-
-
-/* ===============================
-   TYPING EFFECT
-================================ */
+/* =========================
+   TYPING TEXT
+========================= */
 
 const typing = document.getElementById("typing");
 
@@ -87,47 +71,43 @@ const words = [
 
     "Computer Science Student",
 
-    "Problem Solver",
+    "Web Developer",
 
-    "Future Software Engineer"
+    "Problem Solver"
 
 ];
 
 let wordIndex = 0;
-let letterIndex = 0;
+let charIndex = 0;
 let deleting = false;
 
-function typingAnimation() {
+function typeEffect() {
 
-    const currentWord = words[wordIndex];
+    const current = words[wordIndex];
 
     if (!deleting) {
 
-        typing.textContent =
-            currentWord.substring(0, letterIndex + 1);
+        typing.textContent = current.substring(0, charIndex);
 
-        letterIndex++;
+        charIndex++;
 
-        if (letterIndex === currentWord.length) {
+        if (charIndex > current.length) {
 
             deleting = true;
 
-            setTimeout(typingAnimation, 1800);
+            setTimeout(typeEffect, 1200);
 
             return;
 
         }
 
-    }
+    } else {
 
-    else {
+        typing.textContent = current.substring(0, charIndex);
 
-        typing.textContent =
-            currentWord.substring(0, letterIndex - 1);
+        charIndex--;
 
-        letterIndex--;
-
-        if (letterIndex === 0) {
+        if (charIndex < 0) {
 
             deleting = false;
 
@@ -143,97 +123,99 @@ function typingAnimation() {
 
     }
 
-    setTimeout(
-
-        typingAnimation,
-
-        deleting ? 55 : 110
-
-    );
+    setTimeout(typeEffect, deleting ? 50 : 90);
 
 }
 
-typingAnimation();
+typeEffect();
 
 
-/* ===============================
-   DARK / LIGHT MODE
-================================ */
+/* =========================
+   NAVBAR SHADOW
+========================= */
 
-const themeToggle = document.getElementById("themeToggle");
+const navbar = document.getElementById("navbar");
 
-const body = document.body;
+window.addEventListener("scroll", () => {
 
-const savedTheme = localStorage.getItem("theme");
+    if (window.scrollY > 50) {
 
-if (savedTheme === "light") {
+        navbar.classList.add("scrolled");
 
-    body.classList.add("light-theme");
+    } else {
 
-    themeToggle.innerHTML = "☀️";
-
-}
-
-themeToggle.addEventListener("click", () => {
-
-    body.classList.toggle("light-theme");
-
-    if (body.classList.contains("light-theme")) {
-
-        localStorage.setItem("theme", "light");
-
-        themeToggle.innerHTML = "☀️";
+        navbar.classList.remove("scrolled");
 
     }
 
-    else {
+});
+/* =========================
+   SCROLL PROGRESS BAR
+========================= */
 
-        localStorage.setItem("theme", "dark");
+const scrollBar = document.getElementById("scrollBar");
 
-        themeToggle.innerHTML = "🌙";
+window.addEventListener("scroll", () => {
+
+    const scrollTop = window.scrollY;
+
+    const docHeight =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+    const progress = (scrollTop / docHeight) * 100;
+
+    scrollBar.style.width = progress + "%";
+
+});
+
+
+/* =========================
+   BACK TO TOP BUTTON
+========================= */
+
+const topBtn = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 400) {
+
+        topBtn.classList.add("showTop");
+
+    } else {
+
+        topBtn.classList.remove("showTop");
 
     }
 
 });
 
+topBtn.addEventListener("click", () => {
 
-/* ===============================
-   HERO IMAGE FLOATING
-================================ */
+    window.scrollTo({
 
-const profile = document.querySelector(".profile-wrapper");
+        top: 0,
 
-let move = 0;
+        behavior: "smooth"
 
-setInterval(() => {
+    });
 
-    move += 0.05;
-
-    profile.style.transform =
-
-        `translateY(${Math.sin(move) * 10}px)`;
-
-}, 20);
-/* ==========================================
-   PART 2
-========================================== */
+});
 
 
-/* ===============================
-   SCROLL REVEAL ANIMATION
-================================ */
+/* =========================
+   FADE IN ANIMATION
+========================= */
 
-const revealElements = document.querySelectorAll(
-".section, .project-card, .skill-box, .info-card, .research-card, .certificate-card"
-);
+const hiddenElements = document.querySelectorAll(".section");
 
-const revealObserver = new IntersectionObserver(
+const observer = new IntersectionObserver(
 
-(entries)=>{
+(entries) => {
 
-entries.forEach(entry=>{
+entries.forEach(entry => {
 
-if(entry.isIntersecting){
+if (entry.isIntersecting) {
 
 entry.target.classList.add("show");
 
@@ -245,52 +227,50 @@ entry.target.classList.add("show");
 
 {
 
-threshold:0.15
+threshold: 0.15
 
 }
 
 );
 
-revealElements.forEach(item=>{
+hiddenElements.forEach(section => {
 
-revealObserver.observe(item);
+observer.observe(section);
 
 });
 
 
-
-/* ===============================
+/* =========================
    ACTIVE NAVIGATION
-================================ */
+========================= */
 
-const sections = document.querySelectorAll("section[id]");
+const sections = document.querySelectorAll("section");
 
-const navigationLinks =
-document.querySelectorAll(".nav-links a");
+const navItems = document.querySelectorAll(".nav-links a");
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
 
-let currentSection="";
+let current = "";
 
-sections.forEach(section=>{
+sections.forEach(section => {
 
-const sectionTop=section.offsetTop-120;
+const top = section.offsetTop - 120;
 
-const sectionHeight=section.clientHeight;
+const height = section.clientHeight;
 
-if(pageYOffset>=sectionTop){
+if (window.scrollY >= top) {
 
-currentSection=section.getAttribute("id");
+current = section.getAttribute("id");
 
 }
 
 });
 
-navigationLinks.forEach(link=>{
+navItems.forEach(link => {
 
 link.classList.remove("active");
 
-if(link.getAttribute("href")==="#" + currentSection){
+if (link.getAttribute("href") === "#" + current) {
 
 link.classList.add("active");
 
@@ -301,145 +281,184 @@ link.classList.add("active");
 });
 
 
+/* =========================
+   CURSOR GLOW
+========================= */
 
-/* ===============================
-   BACK TO TOP BUTTON
-================================ */
+const glow = document.getElementById("cursorGlow");
 
-const backToTop=document.getElementById("backToTop");
+document.addEventListener("mousemove", (e) => {
 
-window.addEventListener("scroll",()=>{
+glow.style.left = e.clientX + "px";
 
-if(window.scrollY>500){
+glow.style.top = e.clientY + "px";
 
-backToTop.classList.add("show-top");
+});
+
+
+/* =========================
+   FLOATING ANIMATION
+========================= */
+
+const floatingItems = document.querySelectorAll(".floating");
+
+floatingItems.forEach((item, index) => {
+
+item.style.animationDelay = `${index * 0.4}s`;
+
+});
+/* =========================
+   CODE WINDOW TYPING
+========================= */
+
+const codeTyping = document.getElementById("codeTyping");
+
+const codeLines = [
+
+`const developer = {`,
+`  name: "Iffa Masoud",`,
+`  role: "Computer Science Student",`,
+`  skills: ["HTML", "CSS", "JavaScript"],`,
+`  learning: "Frontend Development",`,
+`  passion: "Building Beautiful Websites",`,
+`};`,
+``,
+`console.log("Welcome to my portfolio!");`
+
+];
+
+let line = 0;
+let character = 0;
+
+function typeCode() {
+
+    if (!codeTyping) return;
+
+    if (line < codeLines.length) {
+
+        if (character < codeLines[line].length) {
+
+            codeTyping.innerHTML += codeLines[line].charAt(character);
+
+            character++;
+
+            setTimeout(typeCode, 25);
+
+        }
+
+        else {
+
+            codeTyping.innerHTML += "\n";
+
+            line++;
+
+            character = 0;
+
+            setTimeout(typeCode, 250);
+
+        }
+
+    }
 
 }
 
-else{
+window.addEventListener("load", () => {
 
-backToTop.classList.remove("show-top");
+    setTimeout(typeCode, 1000);
+
+});
+
+
+/* =========================
+   CONTACT FORM
+========================= */
+
+const contactForm = document.querySelector(".contact-form");
+
+if (contactForm) {
+
+contactForm.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+alert("Thank you! Your message has been received.");
+
+contactForm.reset();
+
+});
+
+}
+
+
+/* =========================
+   BUTTON HOVER EFFECT
+========================= */
+
+const buttons = document.querySelectorAll("button, a");
+
+buttons.forEach(btn => {
+
+btn.addEventListener("mouseenter", () => {
+
+btn.style.transform = "translateY(-3px)";
+
+});
+
+btn.addEventListener("mouseleave", () => {
+
+btn.style.transform = "";
+
+});
+
+});
+
+
+/* =========================
+   PARALLAX BLOBS
+========================= */
+
+const blur1 = document.querySelector(".blur1");
+const blur2 = document.querySelector(".blur2");
+
+window.addEventListener("mousemove", (e) => {
+
+const x = e.clientX / window.innerWidth;
+const y = e.clientY / window.innerHeight;
+
+if (blur1) {
+
+blur1.style.transform =
+`translate(${x*20}px, ${y*20}px)`;
+
+}
+
+if (blur2) {
+
+blur2.style.transform =
+`translate(${-x*20}px, ${-y*20}px)`;
 
 }
 
 });
 
-backToTop.addEventListener("click",()=>{
 
-window.scrollTo({
+/* =========================
+   PAGE LOADER
+========================= */
 
-top:0,
+window.addEventListener("load", () => {
 
-behavior:"smooth"
-
-});
-
-});
-
-
-
-/* ===============================
-   SCROLL PROGRESS BAR
-================================ */
-
-const scrollBar=document.getElementById("scrollBar");
-
-window.addEventListener("scroll",()=>{
-
-const totalHeight=
-
-document.documentElement.scrollHeight-
-
-window.innerHeight;
-
-const progress=
-
-(window.scrollY/totalHeight)*100;
-
-scrollBar.style.width=progress+"%";
+document.body.classList.add("loaded");
 
 });
 
 
+/* =========================
+   CONSOLE MESSAGE
+========================= */
 
-/* ===============================
-   BUTTON RIPPLE EFFECT
-================================ */
+console.log("%cWelcome to Iffa Masoud's Portfolio",
+"font-size:20px;font-weight:bold;color:#4F8CFF;");
 
-const buttons=document.querySelectorAll(
-
-".primary-btn,.secondary-btn"
-
-);
-
-buttons.forEach(button=>{
-
-button.addEventListener("mouseenter",()=>{
-
-button.classList.add("hovering");
-
-});
-
-button.addEventListener("mouseleave",()=>{
-
-button.classList.remove("hovering");
-
-});
-
-});
-
-
-
-/* ===============================
-   PROJECT CARD HOVER
-================================ */
-
-const projectCards=document.querySelectorAll(".project-card");
-
-projectCards.forEach(card=>{
-
-card.addEventListener("mousemove",(e)=>{
-
-const rect=card.getBoundingClientRect();
-
-const x=e.clientX-rect.left;
-
-const y=e.clientY-rect.top;
-
-card.style.setProperty("--x",x+"px");
-
-card.style.setProperty("--y",y+"px");
-
-});
-
-});
-
-
-
-/* ===============================
-   PARALLAX HERO EFFECT
-================================ */
-
-const hero=document.querySelector(".hero");
-
-window.addEventListener("scroll",()=>{
-
-const value=window.scrollY;
-
-hero.style.backgroundPositionY=value*0.3+"px";
-
-});
-
-
-
-/* ===============================
-   CURRENT YEAR
-================================ */
-
-const year=document.getElementById("year");
-
-if(year){
-
-year.textContent=new Date().getFullYear();
-
-}
+console.log("%cThanks for visiting! 🚀",
+"font-size:14px;color:#888;");
