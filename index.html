@@ -212,11 +212,16 @@
     <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/iffa-m-983188235" target="_blank">linkedin.com/in/iffa-m-983188235</a></p>
   </div>
   <div class="contact-right">
-    <form class="contact-form glass">
-      <input type="text" placeholder="Name" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="Message" rows="5" required></textarea>
-      <button type="submit" class="btn btn-primary">Send Message</button>
+    <div data-fs-success class="form-message success-message"></div>
+    <div data-fs-error class="form-message error-message"></div>
+    <form class="contact-form glass" id="my-form">
+      <input type="text" name="name" placeholder="Name" data-fs-field required>
+      <span data-fs-error="name" class="field-error"></span>
+      <input type="email" name="email" placeholder="Email" data-fs-field required>
+      <span data-fs-error="email" class="field-error"></span>
+      <textarea name="message" placeholder="Message" rows="5" data-fs-field required></textarea>
+      <span data-fs-error="message" class="field-error"></span>
+      <button type="submit" class="btn btn-primary" data-fs-submit-btn>Send Message</button>
     </form>
   </div>
 </section>
@@ -237,6 +242,11 @@
 
 <!-- BACK TO TOP BUTTON -->
 <button id="backToTop" aria-label="Back to top">↑</button>
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#my-form', formId: 'meeyeagp' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 <script src="script.js"></script>
 </body>

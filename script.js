@@ -126,13 +126,3 @@ faders.forEach(fader => {
   appearOnScroll.observe(fader);
 });
 
-// ===== CONTACT FORM (placeholder handler) =====
-const contactForm = document.querySelector('.contact-form');
-
-if (contactForm) {
-  contactForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    alert("Thanks for reaching out! I'll get back to you soon.");
-    contactForm.reset();
-  });
-}
