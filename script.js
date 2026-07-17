@@ -155,4 +155,12 @@ async function updateVisitorCount() {
 }
 
 updateVisitorCount();
+// ===== VISIT TIMESTAMP LOG (Supabase) =====
+async function logVisit() {
+  await supabaseClient
+    .from('visits')
+    .insert([{}]);
+}
+
+logVisit();
 
