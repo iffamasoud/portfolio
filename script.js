@@ -125,4 +125,34 @@ const appearOnScroll = new IntersectionObserver(function (entries, observer) {
 faders.forEach(fader => {
   appearOnScroll.observe(fader);
 });
+// ===== VISITOR COUNTER (Supabase) =====
+const SUPABASE_URL = 'https://rwvjiudgbbvkargsyflg.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_-3BBlgSDPNanOYW3K2iz8w_C39adkBb';
+
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function updateVisitorCount() {
+  const { data, error } = await supabaseClient
+    .from('visitor_count')
+    .select('count')
+    .eq('id', 1)
+    .single();
+
+  if (error) {
+    console.error('Error fetching count:', error);
+    return;
+  }
+
+  const newCount = data.count + 1;
+
+  await supabaseClient
+    .from('visitor_count')
+    .update({ count: newCount })
+    .eq('id', 1);
+
+  const counterEl = document.getElementById('visitorCount');
+  if (counterEl) counterEl.textContent = newCount;
+}
+
+updateVisitorCount();
 
